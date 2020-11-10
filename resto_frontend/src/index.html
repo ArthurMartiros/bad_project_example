@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>RESTO</title>
+    <base href="/" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="assets/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/bootstrap.min.js" />
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css"
+    />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.1.0.js"
+      integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script>
+      $(".removeItem").mousedown(function() {
+        $(this)
+          .parent()
+          .remove();
+      });
+      var removable = document.getElementsByClassName("removeItem");
+      removable.onClick.listen(function(e) {
+        removable.clear();
+      });
+    </script>
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
+</html>

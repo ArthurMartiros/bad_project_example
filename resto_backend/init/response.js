@@ -1,0 +1,65 @@
+const error = {
+  USER_NOT_FOUND: "user_not_found",
+  USER_EXISTS: "user_exists",
+  USER_UPDATE_FAILED: "user_update_failed",
+  PERMISSION_DENIED: "permission_denied",
+  INTERNAL_ERROR: "internal_error",
+  INVALID_EMAIL: "invalid_email",
+  INVALID_PASSWORD: "invalid_password",
+  INVALID_PHONE: "invalid_phone",
+  FILE_NOT_PROVIDED: "file_not_provided",
+  THIRD_PARTY_ERROR: "third_party_error",
+  UPLOAD_ERROR: "upload_error",
+  ORDER_FETCH_ERROR: "order_fetch_error",
+  INVALID_ORDER_NUMBER: "invalid_order_number",
+  INVALID_INPUT_DATA: "invalid_input_data",
+  MISSING_REQUIRED_PARAMETER: "missing_required_parameter",
+  EMPTY_PARAMETER: "empty_parameter",
+  FAILED_TO_CREATE_UNKNOWN_USER: "failed_to_create_unknown_user",
+  FAILED_TO_CREATE_USER: "failed_to_create_user",
+  RESTO_NOT_FOUND: "resto_not_found",
+  RESTO_CREATE_FAILED: "resto_create_failed",
+  RESTO_UPDATE_FAILED: "resto_update_failed",
+  RESTO_DELETE_FAILED: "resto_delete_failed",
+  TABLE_CREATION_FAILED: "table_creation_failed",
+  TABLE_UPDATE_FAILED: "table_update_failed",
+  TABLE_NOT_FOUND: "table_not_found",
+  QR_FAILED: "qr_failed",
+  UNKNOWN_ERROR: "unknown_error",
+  FAILED_REGISTER: "failed_register",
+  MENU_CREATION_FAILED: "failed_create_menu",
+  CATEGORIES_CREATION_FAILED: "failed_create_categories",
+  CATEGORIES_UPDATE_FAILED: "failed_update_categories",
+  invalid_login_parameter: "INVALID LOGIN PARAMETER",
+  no_such_user_please_register: "NO SUCH USER",
+  failed_process: "FAILED PROCESS TRY AGAIN OR LATER",
+  failed_update: "FAILED UPDATE",
+  no_matching_password_re_password: "NO MATHING PASSWORD",
+  user_update_failed: "USER UPTADE FAILED",
+  permision_denied: "PERMISIN DENIED",
+  permision_denied_you_cant_change_your_role:
+    "PERMISION DENIED YOU CAN NOT CHANGE YOUR ROLE",
+  user_not_found: "USER NOT FOUND",
+  no_such_user: "NO SUCH USER",
+  no_such_user_or_permision_denied: "NO SUCH USER OR PERMISION DENIED",
+  no_data: "NO DATA",
+  you_cant_add_member_role_grater_than_you:
+    "YOU CAN NOT ADD MEMBER ROLE GREATER THEN YOU",
+  resto_create_failed: "RESTAURANT CREATE FAILED",
+  failed_create_menu: "FAILED CREATE MENU",
+  failed_create_categories: "FAILED CREATE CATEGORY",
+  dupllicate_table_no: "DUPLICATED TABLE NUMBER NOT ALLOWED",
+  duplicated_phone_number:
+    "FAILED PROCESS! MAYBE THERE IS DUPLICATED PHONE NUMBER",
+  unsupported_request: "SORRY! THIS KIND OF REQUEST IS TEMPORARY UNAVAILABLE",
+  order_accepted: "ORDER ALREADY ACCEPTED!",
+  failed_send_push_ios: "FAILED TO SEND PUSH ON SPECIFIED IOS DEVICE!"
+};
+
+const redirect = {
+  set_password: 1000,
+  send_password: 1001,
+  redirect_to_login: 1002
+};
+exports.error = error;
+exports.redirect = redirect;

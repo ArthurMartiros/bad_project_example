@@ -1,0 +1,241 @@
+<!--Version = {{version.full}} <br/>
+
+Upload Percent: {{percentDone}}% <br />-->
+<!-- <form name="myForm" (ngSubmit)="uploadAndProgress()">
+  <fieldset id="buildyourform">
+    <div class="form-group For-append-category">
+      <input type="file" name="category" />
+      <input  class="form-control"  id="categoryName" type="text" required="" minlength="1"  placeholder="Category name"/>
+    </div>
+    <div class="form-group For-append">
+    </div>
+  </fieldset>
+  <input type="button" value="plus" class="add btn-number" id="add"  />
+  <input  type="submit" class="btn btn-primary">
+</form> -->
+<nav class="nav">
+  <div class="burger">
+    <div class="burger__patty"></div>
+  </div>
+
+  <ul class="nav__list">
+    <li class="nav__item">
+      <a [routerLink]="['/admin']" class="nav__link c-blue">
+        <svg
+          style=" fill: rgb(95, 199, 234)"
+          class="svg-icon"
+          viewBox="0 0 20 20"
+        >
+          <path
+            d="M18.121,9.88l-7.832-7.836c-0.155-0.158-0.428-0.155-0.584,0L1.842,9.913c-0.262,0.263-0.073,0.705,0.292,0.705h2.069v7.042c0,0.227,0.187,0.414,0.414,0.414h3.725c0.228,0,0.414-0.188,0.414-0.414v-3.313h2.483v3.313c0,0.227,0.187,0.414,0.413,0.414h3.726c0.229,0,0.414-0.188,0.414-0.414v-7.042h2.068h0.004C18.331,10.617,18.389,10.146,18.121,9.88 M14.963,17.245h-2.896v-3.313c0-0.229-0.186-0.415-0.414-0.415H8.342c-0.228,0-0.414,0.187-0.414,0.415v3.313H5.032v-6.628h9.931V17.245z M3.133,9.79l6.864-6.868l6.867,6.868H3.133z"
+          ></path>
+        </svg>
+      </a>
+    </li>
+
+    <li class="nav__item" (click)="logout()">
+      <a href="#" class="nav__link c-blue">
+        <svg
+          style=" width: 41px;"
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fas"
+          data-icon="sign-out-alt"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+          class="svg-inline--fa fa-sign-out-alt fa-w-16 fa-lg"
+        >
+          <path
+            fill="currentColor"
+            d="M497 273L329 441c-15 15-41 4.5-41-17v-96H152c-13.3 0-24-10.7-24-24v-96c0-13.3 10.7-24 24-24h136V88c0-21.4 25.9-32 41-17l168 168c9.3 9.4 9.3 24.6 0 34zM192 436v-40c0-6.6-5.4-12-12-12H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h84c6.6 0 12-5.4 12-12V76c0-6.6-5.4-12-12-12H96c-53 0-96 43-96 96v192c0 53 43 96 96 96h84c6.6 0 12-5.4 12-12z"
+            class=""
+          ></path>
+        </svg>
+      </a>
+    </li>
+  </ul>
+</nav>
+<div class="inRestoMenu">
+  <div>
+    <a [routerLink]="['../resto_members/' + result._id]" href="">Members</a>
+  </div>
+  <div *ngIf="result.menu">
+    <a [routerLink]="['../show_menu/' + result._id]" href="">Show Menu</a>
+  </div>
+  <div>
+    <a [routerLink]="['../resto/order_history/' + result._id]" href=""
+      >Order History</a
+    >
+  </div>
+</div>
+<div class="rest-inf-table">
+  <p>
+    Restaurant info
+  </p>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Restaurant Name</th>
+        <th scope="col">Emails</th>
+        <th scope="col">Phones</th>
+        <th scope="col">Members</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom: 1px solid #dee2e6;">
+        <td>{{ result.name }}</td>
+        <td>
+          <div *ngFor="let item of result.email">
+            <span>{{ item }}</span>
+          </div>
+        </td>
+        <td>
+          <div *ngFor="let item of result.phone">
+            <span>{{ item }}</span>
+          </div>
+        </td>
+        <td>{{ result.admins.length }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a class="btn btn-dark " [routerLink]="['../edit_resto/' + result._id]"
+    >Edit Restaurant</a
+  >
+</div>
+<div>
+  <div *ngIf="!result.menu" style="float:left">
+    <form (ngSubmit)="createMenu(currency.value)">
+      <select name="currency" #currency>
+        <option value="USD" selected="selected">United States Dollars</option>
+        <option value="EUR">Euro</option>
+        <option value="GBP">United Kingdom Pounds</option>
+        <option value="DZD">Algeria Dinars</option>
+        <option value="ARP">Argentina Pesos</option>
+        <option value="AUD">Australia Dollars</option>
+        <option value="ATS">Austria Schillings</option>
+        <option value="BSD">Bahamas Dollars</option>
+        <option value="BBD">Barbados Dollars</option>
+        <option value="BEF">Belgium Francs</option>
+        <option value="BMD">Bermuda Dollars</option>
+        <option value="BRR">Brazil Real</option>
+        <option value="BGL">Bulgaria Lev</option>
+        <option value="CAD">Canada Dollars</option>
+        <option value="CLP">Chile Pesos</option>
+        <option value="CNY">China Yuan Renmimbi</option>
+        <option value="CYP">Cyprus Pounds</option>
+        <option value="CSK">Czech Republic Koruna</option>
+        <option value="DKK">Denmark Kroner</option>
+        <option value="NLG">Dutch Guilders</option>
+        <option value="XCD">Eastern Caribbean Dollars</option>
+        <option value="EGP">Egypt Pounds</option>
+        <option value="FJD">Fiji Dollars</option>
+        <option value="FIM">Finland Markka</option>
+        <option value="FRF">France Francs</option>
+        <option value="DEM">Germany Deutsche Marks</option>
+        <option value="XAU">Gold Ounces</option>
+        <option value="GRD">Greece Drachmas</option>
+        <option value="HKD">Hong Kong Dollars</option>
+        <option value="HUF">Hungary Forint</option>
+        <option value="ISK">Iceland Krona</option>
+        <option value="INR">India Rupees</option>
+        <option value="IDR">Indonesia Rupiah</option>
+        <option value="IEP">Ireland Punt</option>
+        <option value="ILS">Israel New Shekels</option>
+        <option value="ITL">Italy Lira</option>
+        <option value="JMD">Jamaica Dollars</option>
+        <option value="JPY">Japan Yen</option>
+        <option value="JOD">Jordan Dinar</option>
+        <option value="KRW">Korea (South) Won</option>
+        <option value="LBP">Lebanon Pounds</option>
+        <option value="LUF">Luxembourg Francs</option>
+        <option value="MYR">Malaysia Ringgit</option>
+        <option value="MXP">Mexico Pesos</option>
+        <option value="NLG">Netherlands Guilders</option>
+        <option value="NZD">New Zealand Dollars</option>
+        <option value="NOK">Norway Kroner</option>
+        <option value="PKR">Pakistan Rupees</option>
+        <option value="XPD">Palladium Ounces</option>
+        <option value="PHP">Philippines Pesos</option>
+        <option value="XPT">Platinum Ounces</option>
+        <option value="PLZ">Poland Zloty</option>
+        <option value="PTE">Portugal Escudo</option>
+        <option value="ROL">Romania Leu</option>
+        <option value="RUR">Russia Rubles</option>
+        <option value="SAR">Saudi Arabia Riyal</option>
+        <option value="XAG">Silver Ounces</option>
+        <option value="SGD">Singapore Dollars</option>
+        <option value="SKK">Slovakia Koruna</option>
+        <option value="ZAR">South Africa Rand</option>
+        <option value="KRW">South Korea Won</option>
+        <option value="ESP">Spain Pesetas</option>
+        <option value="XDR">Special Drawing Right (IMF)</option>
+        <option value="SDD">Sudan Dinar</option>
+        <option value="SEK">Sweden Krona</option>
+        <option value="CHF">Switzerland Francs</option>
+        <option value="TWD">Taiwan Dollars</option>
+        <option value="THB">Thailand Baht</option>
+        <option value="TTD">Trinidad and Tobago Dollars</option>
+        <option value="TRL">Turkey Lira</option>
+        <option value="VEB">Venezuela Bolivar</option>
+        <option value="ZMK">Zambia Kwacha</option>
+        <option value="EUR">Euro</option>
+        <option value="XCD">Eastern Caribbean Dollars</option>
+        <option value="XDR">Special Drawing Right (IMF)</option>
+        <option value="XAG">Silver Ounces</option>
+        <option value="XAU">Gold Ounces</option>
+        <option value="XPD">Palladium Ounces</option>
+        <option value="XPT">Platinum Ounces</option>
+      </select>
+      <input class="btn-info" type="submit" value="Create Menu" />
+    </form>
+  </div>
+  <div style="float:right">
+    <form>
+      <input
+        style="margin-right:15px"
+        type="submit"
+        (click)="createTable()"
+        value="Create Table"
+        class="add  btn-success"
+      />
+      <input
+        class="btn-danger"
+        type="submit"
+        value="Delete Last Table"
+        (click)="deleteTable()"
+      />
+    </form>
+  </div>
+</div>
+<div style="margin-top:65px">
+  <p style="color: darkslategray;font-size: 22px;font-weight: 700;">
+    Tables Count: {{ result.tables.length }}
+  </p>
+  <div class="qrTable">
+    <div *ngFor="let i of result.tables">
+      <div class="table_inf">
+        <p>Table Number {{ i.No }}</p>
+        <img
+          src="{{api}}/menu/getPhoto/{{ i.qr }}"
+          class="img-fluid"
+          alt="Responsive image"
+        />
+        <input
+          type="submit"
+          value="Download Image"
+          (click)="downloadQr(i.qr)"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<a [routerLink]="['/admin/credentials']" class="logo">
+  <img
+    class="logo"
+    src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/45226/ettrics-logo.svg"
+    alt=""
+  />
+</a>

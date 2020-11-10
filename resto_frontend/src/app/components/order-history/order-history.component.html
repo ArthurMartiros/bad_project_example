@@ -1,0 +1,76 @@
+<nav class="nav">
+  <div class="burger">
+    <div class="burger__patty"></div>
+  </div>
+
+  <ul class="nav__list">
+    <li class="nav__item">
+      <a [routerLink]="['/admin']" class="nav__link c-blue">
+        <svg
+          style=" fill: rgb(95, 199, 234)"
+          class="svg-icon"
+          viewBox="0 0 20 20"
+        >
+          <path
+            d="M18.121,9.88l-7.832-7.836c-0.155-0.158-0.428-0.155-0.584,0L1.842,9.913c-0.262,0.263-0.073,0.705,0.292,0.705h2.069v7.042c0,0.227,0.187,0.414,0.414,0.414h3.725c0.228,0,0.414-0.188,0.414-0.414v-3.313h2.483v3.313c0,0.227,0.187,0.414,0.413,0.414h3.726c0.229,0,0.414-0.188,0.414-0.414v-7.042h2.068h0.004C18.331,10.617,18.389,10.146,18.121,9.88 M14.963,17.245h-2.896v-3.313c0-0.229-0.186-0.415-0.414-0.415H8.342c-0.228,0-0.414,0.187-0.414,0.415v3.313H5.032v-6.628h9.931V17.245z M3.133,9.79l6.864-6.868l6.867,6.868H3.133z"
+          ></path>
+        </svg>
+      </a>
+    </li>
+
+    <li class="nav__item" (click)="logout()">
+      <a href="#" class="nav__link c-blue">
+        <svg
+          style=" width: 41px;"
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fas"
+          data-icon="sign-out-alt"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+          class="svg-inline--fa fa-sign-out-alt fa-w-16 fa-lg"
+        >
+          <path
+            fill="currentColor"
+            d="M497 273L329 441c-15 15-41 4.5-41-17v-96H152c-13.3 0-24-10.7-24-24v-96c0-13.3 10.7-24 24-24h136V88c0-21.4 25.9-32 41-17l168 168c9.3 9.4 9.3 24.6 0 34zM192 436v-40c0-6.6-5.4-12-12-12H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h84c6.6 0 12-5.4 12-12V76c0-6.6-5.4-12-12-12H96c-53 0-96 43-96 96v192c0 53 43 96 96 96h84c6.6 0 12-5.4 12-12z"
+            class=""
+          ></path>
+        </svg>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<div>
+  <div *ngFor="let order of orders">
+    <div>Table Number : {{ order.tableNo }}</div>
+    <div>Order Date : {{ order.date }}</div>
+    <div>Order ID: {{ order.order_key }}</div>
+    <div *ngIf="order.show">Viewed</div>
+    <div *ngIf="!order.show">Not Viewed</div>
+    <div *ngFor="let category of order.menu_category">
+      <div>{{ category.name }}:</div>
+      <div *ngFor="let item of category.items">
+        <span> Name: {{ item.name }}</span>
+        <br />
+        <span> Count: {{ item.count }}</span>
+        <br />
+        <span> Price: {{ item.price }}</span>
+        <br />
+        <span> Description: {{ item.description }}</span>
+        <br />
+        <br />
+      </div>
+    </div>
+    <hr />
+  </div>
+</div>
+
+<a [routerLink]="['/admin/credentials']" class="logo">
+  <img
+    class="logo"
+    src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/45226/ettrics-logo.svg"
+    alt=""
+  />
+</a>

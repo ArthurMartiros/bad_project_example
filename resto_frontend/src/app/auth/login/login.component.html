@@ -1,0 +1,127 @@
+<!-- <a routerLink="/admin/services">Go To Services</a>
+<a routerLink="/admin/hotel">Go To hotel</a> -->
+<div *ngIf="boolForLogin == 'setP' && user">
+  <form style="margin:0 auto;width:50%;">
+    <h3>SET PASSWORD FOR VERIFICATION</h3>
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <div class="md-form mt-0">
+          <input
+            class="form-control"
+            type="password"
+            placeholder="Password"
+            #password
+            required
+          />
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <!-- Material input -->
+      <div class="col-sm-10">
+        <div class="md-form mt-0">
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Reapet Password"
+            #re_password
+            required
+          />
+        </div>
+      </div>
+    </div>
+    <input
+      (click)="registersP(password.value, re_password.value)"
+      type="submit"
+      class="btn btn-primary"
+      value="Next"
+    />
+  </form>
+</div>
+
+<form *ngIf="render && !user">
+  <h3>TYPE VERIFICATION CODE</h3>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <div class="md-form mt-0">
+        <input
+          class="form-control"
+          placeholder="Code"
+          type="text"
+          #code
+          required
+        />
+      </div>
+    </div>
+  </div>
+  <input
+    (click)="verifyLoginCode(code.value)"
+    class="btn btn-primary"
+    type="submit"
+    value="Next"
+  />
+</form>
+
+<div *ngIf="boolForLogin == 'sentP'">
+  <form style="margin:0 auto;width:50%;">
+    <p style="font-size:16px;font-weight:700">TYPE YOUR PASSWORD FOR LOGIN</p>
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <div class="md-form mt-0">
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Password"
+            #password
+            required
+          />
+        </div>
+      </div>
+    </div>
+    <input
+      (click)="loginWithPassword(password.value)"
+      type="submit"
+      class="btn btn-primary"
+      value="Next"
+    />
+  </form>
+</div>
+
+<div *ngIf="boolForLogin == 'phone'">
+  <form style="margin:0 auto;width:50%;">
+    <h3>LOGIN</h3>
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <div class="md-form mt-0">
+          <input
+            class="form-control"
+            style="width:302px;"
+            placeholder="Phone"
+            type="text"
+            #phone
+            required
+          />
+        </div>
+      </div>
+    </div>
+    <input
+      (click)="loginWithPhone(phone.value)"
+      class="btn btn-primary"
+      type="submit"
+      value="Login"
+    />
+    <div
+      class="btn btn-primary"
+      style="margin-left: 30px; display: inline-block;"
+      (click)="redirectToRegister()"
+    >
+      Registration
+    </div>
+    <div id="recaptcha-container"></div>
+    <a href="" target="_blank">Privacy Policy</a>
+    <br />
+    <a href="" target="_blank">Terms And Conditions</a>
+  </form>
+</div>
+
+<!-- Horizontal material form -->

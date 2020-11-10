@@ -1,0 +1,11 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "LNRHYUS583.com.restoapp.Resto",
+                "paths": [ "*" ]
+            }
+        ]
+    }
+}

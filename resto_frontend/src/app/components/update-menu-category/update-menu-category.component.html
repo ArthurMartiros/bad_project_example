@@ -1,0 +1,138 @@
+<nav class="nav">
+  <div class="burger">
+    <div class="burger__patty"></div>
+  </div>
+
+  <ul class="nav__list">
+    <li class="nav__item">
+      <a [routerLink]="['/admin']" class="nav__link c-blue">
+        <svg
+          style=" fill: rgb(95, 199, 234)"
+          class="svg-icon"
+          viewBox="0 0 20 20"
+        >
+          <path
+            d="M18.121,9.88l-7.832-7.836c-0.155-0.158-0.428-0.155-0.584,0L1.842,9.913c-0.262,0.263-0.073,0.705,0.292,0.705h2.069v7.042c0,0.227,0.187,0.414,0.414,0.414h3.725c0.228,0,0.414-0.188,0.414-0.414v-3.313h2.483v3.313c0,0.227,0.187,0.414,0.413,0.414h3.726c0.229,0,0.414-0.188,0.414-0.414v-7.042h2.068h0.004C18.331,10.617,18.389,10.146,18.121,9.88 M14.963,17.245h-2.896v-3.313c0-0.229-0.186-0.415-0.414-0.415H8.342c-0.228,0-0.414,0.187-0.414,0.415v3.313H5.032v-6.628h9.931V17.245z M3.133,9.79l6.864-6.868l6.867,6.868H3.133z"
+          ></path>
+        </svg>
+      </a>
+    </li>
+
+    <li class="nav__item" (click)="logout()">
+      <a href="#" class="nav__link c-blue">
+        <svg
+          style=" width: 41px;"
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fas"
+          data-icon="sign-out-alt"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+          class="svg-inline--fa fa-sign-out-alt fa-w-16 fa-lg"
+        >
+          <path
+            fill="currentColor"
+            d="M497 273L329 441c-15 15-41 4.5-41-17v-96H152c-13.3 0-24-10.7-24-24v-96c0-13.3 10.7-24 24-24h136V88c0-21.4 25.9-32 41-17l168 168c9.3 9.4 9.3 24.6 0 34zM192 436v-40c0-6.6-5.4-12-12-12H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h84c6.6 0 12-5.4 12-12V76c0-6.6-5.4-12-12-12H96c-53 0-96 43-96 96v192c0 53 43 96 96 96h84c6.6 0 12-5.4 12-12z"
+            class=""
+          ></path>
+        </svg>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<form name="myForm" (ngSubmit)="uploadAndProgress()">
+  <fieldset id="buildyourform">
+    <div class="form-group For-append-category">
+      <img
+        src="{{api}}/menu/getPhoto/{{ category.photo }}"
+        width="200"
+        height="200"
+      />
+      <br />
+      Change Category Photo:<input type="file" name="category" /> Name:<input
+        class="form-control"
+        id="categoryName"
+        type="text"
+        minlength="1"
+        placeholder="{{ category.name }}"
+        value="{{ category.name }}"
+      />
+    </div>
+    <span *ngFor="let it of category.items" class="For-exist">
+      <!-- (click)="removeItems({item:it._id, photo:it.photo})"    -->
+      <button
+        type="button"
+        id="removeItem"
+        class="button hollow circle removeItem"
+        data-quantity="minus"
+        data-field="quantity"
+      >
+        <i class="fa fa-minus" aria-hidden="true"></i>
+      </button>
+      <div>
+        <input type="hidden" value="{{ it._id }}" name="itemId" />
+        <input type="hidden" value="{{ it.photo }}" name="photoId" />
+
+        Name:<input
+          name="name"
+          class="form-control"
+          type="text"
+          placeholder="{{ it.name }}"
+          value="{{ it.name }}"
+          #name
+        />
+        <!-- <div> Name: <span>{{it.name}}</span></div> -->
+
+        Price: {{ currency
+        }}<input
+          name="price"
+          class="form-control"
+          type="number"
+          placeholder="{{ it.price }}"
+          value="{{ it.price }}"
+        />
+        <!-- <span>Price: {{it.price}}</span> -->
+        <br />
+        Description:<input
+          class="form-control"
+          name="desc"
+          type="text"
+          placeholder="{{ it.description }}"
+          value="{{ it.description }}"
+        />
+        <!-- <span>DEscription: {{it.description}}</span> -->
+        <br />
+        <img
+          src="{{api}}/menu/getPhoto/{{ it.photo }}"
+          width="300"
+          height="300"
+        />
+        <br />
+        Change Photo:<input type="file" name="item" />
+        <!-- <span> {{it.photo}}</span> -->
+        <br />
+        <div></div>
+      </div>
+    </span>
+
+    <div class="form-group For-append"></div>
+  </fieldset>
+
+  <input
+    type="button"
+    value="Add Item"
+    class="add btn-primary btn"
+    id="add"
+    style="position: fixed;bottom: 0;
+    left: 0;"
+  />
+  <input
+    type="submit"
+    value="Update"
+    class="btn btn-primary"
+    style="position: fixed;bottom: 0;
+    right: 0;"
+  />
+</form>

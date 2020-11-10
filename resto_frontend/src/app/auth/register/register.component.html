@@ -1,0 +1,94 @@
+<form *ngIf="!render">
+  <h3>REGISTRATION</h3>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <div class="md-form mt-0">
+        <input
+          class="form-control"
+          placeholder="Phone"
+          type="text"
+          #phone
+          required
+        />
+      </div>
+    </div>
+  </div>
+  <input
+    (click)="sendLoginCode(phone.value)"
+    class="btn btn-primary"
+    type="submit"
+  />
+  <div id="recaptcha-container"></div>
+</form>
+
+<form *ngIf="render && !user">
+  <h3>TYPE VERIFICATION CODE</h3>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <div class="md-form mt-0">
+        <input
+          class="form-control"
+          placeholder="Code"
+          type="text"
+          #code
+          required
+        />
+      </div>
+    </div>
+  </div>
+  <input
+    (click)="verifyLoginCode(code.value)"
+    class="btn btn-primary"
+    type="submit"
+  />
+</form>
+
+<div *ngIf="user">
+  <h3>SET YOUR CREDENTIALS</h3>
+  <form>
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <div class="md-form mt-0">
+          <input
+            class="form-control"
+            placeholder="name"
+            type="text"
+            #name
+            required
+          />
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <div class="md-form mt-0">
+          <input
+            class="form-control"
+            placeholder="password"
+            type="password"
+            #password
+            required
+          />
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <div class="md-form mt-0">
+          <input
+            class="form-control"
+            placeholder="re_password"
+            type="password"
+            #re_password
+            required
+          />
+        </div>
+      </div>
+    </div>
+    <input
+      (click)="register(name.value, password.value, re_password.value)"
+      class="btn btn-primary"
+      type="submit"
+    />
+  </form>
+</div>

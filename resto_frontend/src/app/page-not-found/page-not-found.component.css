@@ -1,0 +1,4 @@
+:host ::ng-deep .container,
+:host ::ng-deep .wrapper {
+  width: 100% !important;
+}

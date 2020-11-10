@@ -1,0 +1,195 @@
+
+
+
+***********************
+PROCESS -> ORDER
+route-> https://www.laresto.com/api/order
+method-> PUT
+requestObj->  {
+     items_count
+     query:{
+      user_id
+     }
+     object:{
+      resto: Schema.Types.ObjectId,
+      tableNo: Number,
+      comment: String,
+      rating: Number,
+      menu_category: [
+        {
+          name: String,
+          items: [
+            {
+              name: String,
+              count: Number,
+              description: String,
+              price: Number
+            }
+          ]
+        }
+      ]
+     }
+   }
+
+
+*************************
+PROCESS-> Require Fee
+route-> https://www.laresto.com/api/user/fee
+method-> POST
+
+requestObject->{
+	    query{
+	      resto : type->String "restaurant id"
+	      tableNo: type->Number "table number"
+	    }
+  }
+
+
+*************************
+PROCESS-> Call Waiter
+route-> https://www.laresto.com/api/user/callWaiter
+method-> POST
+
+requestObject->{
+	    query{
+	      resto : type->String "restaurant id"
+	      tableNo: type->Number "table number"
+	    }
+  }
+
+*************************
+PROCESS-> CREATE USER
+route-> https://www.laresto.com/api/user/createUser
+method-> POST
+requestObj->{
+        object:{
+                 phone -> String
+                 name ->String
+                 fb_id -> String
+        }
+   
+    }
+
+************************
+PROCESS -> GET USER ORDER HISTORY
+route-> https://www.laresto.com/api/user/getOrderHistory
+method -> POST
+requestObj->{
+        query:{
+            user_id: type-> String
+        }
+    }
+
+**************************
+PROCES -> GET ONE ORDER 
+route -> https://www.laresto.com/api/orders/getOrder
+method -> POST
+requestObject -> {
+   query:{
+      order_id: String,
+      member_id: String,
+     }
+}
+
+************************
+PROCESS -> GET USER INFOS
+route-> https://www.laresto.com/api/user/getUser
+method -> POST
+requestObj->{
+        query:{
+            phone: type-> String
+        }
+    }
+
+*************************
+/////////////////////////
+IN ADMINISTRATIVE WORLD->
+
+*************************
+PROCESS-> LOGIN Waiter 
+route-> https://www.laresto.com/api/admin/login
+method-> POST
+
+requestObj->  {
+        object:{
+            phone -> String
+            
+        }
+    }
+
+*************************
+PROCESS-> Verify Waiter
+
+The First Step IS Login For Getting User-ID Because If Waiter Is Not Added By Restaurant Manager Or Owner The Waiter Can Not Be Registered Simply .And Then It You Will Receive {redirect: 1000} JSON data It Means That The User Is In Database But Is Not Verified. And Then You Shold Do The Below To Verify The Waiter
+
+route-> https://www.laresto.com/api/admin/verifyUser
+
+
+method-> POST
+
+requestObj-> {
+	query:{
+		member_id -> String
+	},
+        object:{
+                password -> String
+                re_password ->String
+                fb_id ->String
+        }
+    }
+
+
+
+***************************
+
+
+
+PROCESS -> GET MENU
+route-> https://www.laresto.com/api/menu/getMenu
+method -> POST
+requestObj-> {
+        query:{
+            table_id -> String
+        }
+    }
+
+*****************************
+PROCESS -> GET MENU PHOTOS
+route-> https://www.laresto.com/api/menu/getPhoto/?id
+method-> GET
+requestObj-> photo id from parameters
+*****************************
+
+
+
+***************************
+PROCESS -> GET QR PHOTO// OPTIONAL IN USE
+route-> https://www.laresto.com/api/getQR
+method->POST
+requestObj->{
+        id  ->type-> String "table id"
+    }
+
+************************
+PROCESS -> GET DEFAULT PHOTO
+route -> https://www.laresto.com/api/photos/getDefaultFoto
+method-> GET
+requestObj-> no any
+params-> no any
+
+************************
+PROCESS ->GET RESTAURANT LOGO
+route-> https://www.laresto.com/api/getRestoLogo?resto="restaurant ID"
+requestObj-> no any
+params->{
+    resto: type->String
+}
+
+************************
+PROCESS-> GET RESTAURANT LOGO BY TABLE
+route-> https://www.laresto.com/api/getRestoLogoByTable?table_id="table ID"
+requestObj-> no any
+params->{
+    table_id: type->String
+}
+
